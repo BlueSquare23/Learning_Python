@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 #Into to Lists
+#Python course section 3
 
 
 #Sample lists, can be numbers, or strings, or both
@@ -87,7 +88,7 @@ print(alpha1)
 print(alpha2)
 print(alpha1 + alpha2)
 
-#Then convert the list to string
+#Then convert the lists to strings
 alpha1 = ''.join(alpha1)
 alpha2 = ''.join(alpha2)
 
@@ -175,7 +176,7 @@ print(a)
 print(a[0:5])
 #print from 2 to the end of the array
 print(a[2:len(a)])
-    #or by omit len(a) and by default let it go to the end
+    #or by omit len(a) and by default it'll go to the end
 print(a[2:])
 #print entire array with
 print(a[:])

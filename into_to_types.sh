@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-#Intro to types
+#Intro to datatypes
 
 #Check datatype with print(type(var))
 #Ex.

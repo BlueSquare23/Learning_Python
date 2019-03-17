@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 #String Manipulation
+#Python course section 2
 
 #These two types of strings are identical
 single_quote_strings = 'single quotes'
