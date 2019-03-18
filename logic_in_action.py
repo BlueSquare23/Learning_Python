@@ -32,7 +32,7 @@ else:
     print("a is not divisible by b nor is b by a")
 
 
-#Given input a & b, print a divided by b, if b is not equal to zero
+#Given the inputs a & b, print a divided by b, if b is not equal to zero
 print("Enter a number")
 a = int(input())
 
