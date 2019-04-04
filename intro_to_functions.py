@@ -49,6 +49,7 @@ print(add_unlimited(1,2,3,4,5,6))
 
 #Date time example
 import datetime as dt
+
 def record_time( message, time = dt.datetime.now() ): #time is a default parameter because it already has a value
     print("{:}, time: {:}".format(message, time))
 
@@ -72,7 +73,7 @@ max_value = max([3, 6, 2, 8])
 #Return Function in action
 
 def is_even(number):
-    if number % 2 ==0:
+    if number % 2 == 0:
         return True
     else:
         return False
@@ -119,7 +120,7 @@ print()
 def reverse(s):
     new_str = ""
     for i in range(len(s)):
-        new_str += s[len(s) - i - 1]
+        new_str += s[len(s) - i - 1] #The last element which has not yet been added
     return new_str
 
 print(reverse("123"))
