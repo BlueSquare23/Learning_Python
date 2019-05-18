@@ -9,6 +9,18 @@ def Exercise0():
     while quit != "q":
         print("Welcome to my python practice excercises!")
         print("Type q to quit and select another exercise")
+        print("Here's a list of all of the exercises:")
+        print('''
+        1) Keeping it 100
+        2) Odd or Even
+        3) Simple Greater Than
+        4) Divisor Finder
+        5) List Compairison
+        6) List Comprehension
+        7) Rock, Paper, Scissors
+        8) Guessing Game
+        9) List Overlap Comprehensions
+        ''')
         quit = str(input())
 
     print("--------------------------------")
@@ -46,7 +58,8 @@ def Exercise2():
     print("Odd or Even")
     print("--------------------------------")
     '''
-    Ask the user for a number. Depending on whether the number is even or odd, print out an appropriate message to the user.
+    Ask the user for a number. Depending on whether the number is even or odd,
+    print out an appropriate message to the user.
     Hint: how does an even / odd number react differently when divided by 2?
 
     Extras:
@@ -76,13 +89,18 @@ def Exercise3():
     Take a list, say for example this one:
 
       a = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
-    and write a program that prints out all the elements of the list that are less than 5.
+    and write a program that prints out all the elements of the list
+    that are less than 5.
 
     Extras:
 
-    Instead of printing the elements one by one, make a new list that has all the elements less than 5 from this list in it and print out this new list.
+    Instead of printing the elements one by one, make a new list that has all
+    the elements less than 5 from this list in it and print out this new list.
     Write this in one line of Python.
-    Ask the user for a number and return a list that contains only elements from the original list a that are smaller than that number given by the user.
+
+    Ask the user for a number and return a list that contains only elements
+    from the original list a that are smaller than that number given by the
+    user.
     '''
     print("Of this list,")
     a = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
@@ -91,7 +109,8 @@ def Exercise3():
 
     #Thought process
     '''
-    Iterate through the list and check if the element is greater than five. If it is print it.
+    Iterate through the list and check if the element is greater
+    than five. If it is print it.
     '''
     for element in a:
         if element > 5:
@@ -103,9 +122,11 @@ def Exercise4():
     print("Divisor Finder")
     print("--------------------------------")
     '''
-    Create a program that asks the user for a number and then prints out a list of all the divisors
-    of that number. (If you don’t know what a divisor is, it is a number that divides evenly
-    into another number. For example, 13 is a divisor of 26 because 26 / 13 has no remainder.)
+    Create a program that asks the user for a number and then prints out a list
+    of all the divisors of that number.
+    (If you don’t know what a divisor is, it is a number that divides evenly
+    into another number. For example, 13 is a divisor of 26 because 26 / 13 has
+    no remainder.)
     '''
     #Thought process
     '''
@@ -121,7 +142,7 @@ def Exercise4():
     number = int(input())
 
     set = range(1, number)
-    #print(set)
+    print(set)
 
     list1 = []
     for item in set:
@@ -150,12 +171,20 @@ def Exercise5():
     a = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
     b = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 
+    print("List a:")
     print(a)
+    print("List b:")
     print(b)
 
+    c = []
+
     for element in a:
-        if element in b:
-            print("The element, {:d} is in both list a and b".format(element))
+        if element in b and element not in c:
+            c.append(element)
+
+    print("List c:")
+    print(c)
+    print("The elements in list c are in both list a and b.")
 
     print("--------------------------------")
 
@@ -244,11 +273,50 @@ def Exercise8():
 
     print("--------------------------------")
 
+def Exercise9():
+    print("List Overlap Comprehensions")
+    print("--------------------------------")
+    '''
+    This week’s exercise is going to be revisiting an old exercise
+    (see Exercise 5), except require the solution in a different way.
+
+    Take two lists, say for example the two below:
+
+    and write a program that returns a list that contains only the elements
+    that are common between the lists (without duplicates). Make sure your
+    program works on two lists of different sizes. Write this in one line of
+    Python using at least one list comprehension. (Hint: Remember list
+    comprehensions from Exercise 6).
+    '''
+    print("List a:")
+    a = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
+    print(a)
+    print("List b:")
+    b = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+    print(b)
+    c = []
+    #Traditional way
+    '''
+        for element in b:
+            if element in a and element not in c:
+                c.append(element)
+    print(c)
+    '''
+    #List Comprehension
+    c = [element for element in b if element in a and element not in c]
+    print("List c:")
+    print(c)
+
+    print("The elements of list c are in both list a and b.")
+
+    print("--------------------------------")
+
+
 #Select Lesson
 quit = 0
 while quit != "q":
     print("Select the exercise you'd like to do, ")
-    Ex = [Exercise0,Exercise1,Exercise2,Exercise3,Exercise4,Exercise5,Exercise6,Exercise7,Exercise8,9]
+    Ex = [Exercise0,Exercise1,Exercise2,Exercise3,Exercise4,Exercise5,Exercise6,Exercise7,Exercise8,Exercise9]
     print(list(range(10)))
     print("Enter 'q' at any time to quit!")
     selected = input()
