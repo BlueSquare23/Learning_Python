@@ -63,7 +63,8 @@ def Exercise1(): #Really exercise 11 on practicepython.org
 
     print("--------------------------------")
 
-def Exercise2():
+
+def Exercise2(): #Ex 12
     print("List Ends")
     print("--------------------------------")
 
@@ -88,21 +89,100 @@ def Exercise2():
 
     print("--------------------------------")
 
-def Exercise3():
-    print("")
+
+def Exercise3(): #Ex 13
+    print("Fibonacci")
     print("--------------------------------")
+
+    '''
+    Write a program that asks the user how many Fibonnaci numbers to generate
+    and then generates them. Take this opportunity to think about how you can
+    use functions. Make sure to ask the user to enter the number of numbers in
+    the sequence to generate.(Hint: The Fibonnaci seqence is a sequence of
+    numbers where the next number in the sequence is the sum of the previous
+    two numbers in the sequence. The sequence looks like this: 1, 1, 2, 3, 5,
+    8, 13, …)
+    '''
+
+    def user_input(text="Enter a number: "):
+        return int(input(text))
+
+
+    def fibonacci():
+        count = user_input("Enter how many fibonacci numbers you'd like to generate: ")
+        i = 1
+        if count == 0:
+            fib = []
+        elif count == 1:
+            fib = [1]
+        elif count == 2:
+            fib = [1,1]
+        elif count > 2:
+            fib = [1,1]
+            #Adds the last two elements of fib together and appends the result to fib
+            while i < (count - 1):
+                fib.append(fib[i] + fib[i-1])
+                i += 1
+        return fib
+
+    print(fibonacci())
+
+
     #Spacing for readability
     print()
 
     print("--------------------------------")
+
 
 def Exercise4():
-    print("")
+    print("List Remove Duplicates")
     print("--------------------------------")
+
+    '''
+    Write a program (function!) that takes a list and returns a new list that
+    contains all the elements of the first list minus all the duplicates.
+
+    Extras:
+
+    * Write two different functions to do this - one using a loop and
+    constructing a list, and another using sets.
+
+    * Go back and do Exercise 5 using sets, and write the solution for that in
+    a different function.
+    '''
+
+    print("List a:")
+    a = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
+    print(a)
+    print("List b:")
+    b = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+    print(b)
+
+
+    def uniq():
+        c = []
+        for item in b:
+            if item in a and item not in c:
+                c.append(item)
+        return c
+
+    print("List c:")
+    print(uniq())
+
+    def set_uniq():
+        return set(b).intersection(set(a))
+        #set(a) turns a into a set rather than a list
+        #set(b) turns b into a set rather than a list
+        #list(SET) turns some set into a list
+
+    print("Intersection of sets, a & b: ")
+    print(set_uniq())
+
     #Spacing for readability
     print()
 
     print("--------------------------------")
+
 
 def Exercise5():
     print("")
@@ -112,6 +192,7 @@ def Exercise5():
 
     print("--------------------------------")
 
+
 def Exercise6():
     print("")
     print("--------------------------------")
@@ -119,6 +200,7 @@ def Exercise6():
     print()
 
     print("--------------------------------")
+
 
 def Exercise7():
     print("")
@@ -128,6 +210,7 @@ def Exercise7():
 
     print("--------------------------------")
 
+
 def Exercise8():
     print("")
     print("--------------------------------")
@@ -135,6 +218,7 @@ def Exercise8():
     print()
 
     print("--------------------------------")
+
 
 def Exercise9():
     print("")
@@ -156,8 +240,8 @@ while quit != "q":
     print('''
         1) Check Primality Functions
         2) List Ends
-        3)
-        4)
+        3) Fibonacci
+        4) List Remove Duplicates
         5)
         6)
         7)
