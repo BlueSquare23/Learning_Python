@@ -185,8 +185,40 @@ def Exercise4():
 
 
 def Exercise5():
-    print("")
+    print("Word Order")
     print("--------------------------------")
+
+    '''
+    Write a program (using functions!) that asks the user for a long string
+    containing multiple words. Print back to the user the same string, except
+    with the words in backwards order. For example, say I type the string:
+
+        My name is Michele
+
+    Then I would see the string:
+
+        Michele is name My
+
+    shown back to me.
+    '''
+
+    print("Enter a sentance you'd like to have reversed: ")
+    sentance = str(input())
+
+    def word_order(sentance = "Test sentance"):
+        split_sentance = sentance.split()
+        print(split_sentance)
+        reversed_sentance = []
+        n = len(split_sentance)
+        while n > 0:
+            reversed_sentance.append(split_sentance[n-1:n])
+            n = n - 1
+        print(reversed_sentance)
+        result = ''.join(reversed_sentance)
+        return result
+    word_order(sentance)
+
+
     #Spacing for readability
     print()
 
@@ -242,7 +274,7 @@ while quit != "q":
         2) List Ends
         3) Fibonacci
         4) List Remove Duplicates
-        5)
+        5) Word Order
         6)
         7)
         8)
