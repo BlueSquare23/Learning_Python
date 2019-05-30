@@ -3,6 +3,9 @@
 
 import random
 
+import requests
+from bs4 import BeautifulSoup
+
 #Find exercises here https://www.practicepython.org/
 def Exercise0():
     quit = 0
@@ -235,8 +238,23 @@ def Exercise6():
 
 
 def Exercise7():
-    print("")
+    print("Decode A Web Page")
     print("--------------------------------")
+
+    '''
+    Use the BeautifulSoup and requests Python packages to print out a list of
+    all the course titles on RyansTutorials.net.
+    '''
+
+    url = 'https://ryanstutorials.net'
+    r = requests.get(url)
+    r_html = r.text
+
+    #<div class="col-sm-4 tutorial-outline">
+    soup = BeautifulSoup(r_html, 'html.parser')
+    for article in soup.find_all(class="col-sm-4 tutorial-outline"):
+        print(article)
+
     #Spacing for readability
     print()
 
@@ -276,7 +294,7 @@ while quit != "q":
         4) List Remove Duplicates
         5) Word Order
         6)
-        7)
+        7) Decode A Web Page
         8)
         9)
         ''')
