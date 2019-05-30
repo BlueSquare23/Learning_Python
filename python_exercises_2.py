@@ -2,6 +2,7 @@
 #Exercises section 2 (Scratch Paper)
 
 import random
+import string
 
 import requests
 from bs4 import BeautifulSoup
@@ -209,18 +210,44 @@ def Exercise5():
     sentance = str(input())
 
     def word_order(sentance = "Test sentance"):
+        #Splits the sentance into a list of stings
+        #Ex. ['this', 'is', 'a', 'test']
         split_sentance = sentance.split()
-        print(split_sentance)
-        reversed_sentance = []
+
+        #Define empty list to put words in
+        reversed_list = []
+
+        #Determine number of times to iterate
         n = len(split_sentance)
+
+        #Loop which plucks the word at position n and appends it to reversed_list
         while n > 0:
-            reversed_sentance.append(split_sentance[n-1:n])
+            word = split_sentance[n-1]
+            reversed_list.append(word)
             n = n - 1
-        print(reversed_sentance)
-        result = ''.join(reversed_sentance)
-        return result
+        #Uses .join method to turn reversed_list into one string, i.e. reversed_sentance
+        reversed_sentance = ' '.join(reversed_list)
+        return print(reversed_sentance)
+
+    #Function call
     word_order(sentance)
 
+
+    #Their Method
+    '''
+    def reverse_v1(x):
+        y = x.split()
+        result = []
+        for word in y:
+            result.insert(0,word)
+        return " ".join(result)
+    '''
+
+    #Which can further be condensed into
+    '''
+    def reverseWord(w):
+        return ' '.join(w.split()[::-1])
+    '''
 
     #Spacing for readability
     print()
@@ -229,8 +256,39 @@ def Exercise5():
 
 
 def Exercise6():
-    print("")
+    print("Password Generator")
     print("--------------------------------")
+
+    '''
+    Write a password generator in Python. Be creative with how you generate
+    passwords - strong passwords have a mix of lowercase letters, uppercase
+    letters, numbers, and symbols. The passwords should be random, generating
+    a new password every time the user asks for a new password. Include your
+    run-time code in a main method.
+
+    Extra:
+    Ask the user how strong they want their password to be. For weak passwords,
+    pick a word or two from a list.
+    '''
+
+    print("Pick your password strength: ")
+    print([1, 2, 3, 4, 5])
+    n = int(input())
+
+    def random_password(n):
+        x = 0
+        list = []
+        set = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")"]
+        while x < n+1:
+            list.append(random.choice(string.ascii_letters))
+            list.append(str(random.randint(1, 99)))
+            list.append(random.choice(set))
+            x = x + 1
+        return "".join(list)
+    print()
+    print("Your new password is: ")
+    print(random_password(n))
+
     #Spacing for readability
     print()
 
@@ -251,10 +309,11 @@ def Exercise7():
     r_html = r.text
 
     #<div class="col-sm-4 tutorial-outline">
+    '''
     soup = BeautifulSoup(r_html, 'html.parser')
     for article in soup.find_all(class="col-sm-4 tutorial-outline"):
         print(article)
-
+    '''
     #Spacing for readability
     print()
 
@@ -293,8 +352,8 @@ while quit != "q":
         3) Fibonacci
         4) List Remove Duplicates
         5) Word Order
-        6)
-        7) Decode A Web Page
+        6) Password Generator
+        7) Decode a Web Page
         8)
         9)
         ''')
