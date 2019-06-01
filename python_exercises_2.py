@@ -301,19 +301,22 @@ def Exercise7():
 
     '''
     Use the BeautifulSoup and requests Python packages to print out a list of
-    all the course titles on RyansTutorials.net.
+    all the article headlines on the New York Times' website.
     '''
 
-    url = 'https://ryanstutorials.net'
+    #Turns webpage into html string and saves that as r_html
+    url = 'http://www.nytimes.com'
     r = requests.get(url)
     r_html = r.text
 
-    #<div class="col-sm-4 tutorial-outline">
-    '''
+    #Soupifies that webpage
     soup = BeautifulSoup(r_html, 'html.parser')
-    for article in soup.find_all(class="col-sm-4 tutorial-outline"):
-        print(article)
-    '''
+
+    #Finds all the <h2> tags and prints out the text of those html subtitles
+    for article in soup.find_all('h2'):
+        print()#For spacing
+        print(article.text)
+
     #Spacing for readability
     print()
 
@@ -321,8 +324,80 @@ def Exercise7():
 
 
 def Exercise8():
-    print("")
+    print("Cows and Bulls")
     print("--------------------------------")
+
+    '''
+    Create a program that will play the “cows and bulls” game with the user.
+    The game works like this:
+
+    Randomly generate a 4-digit number. Ask the user to guess a 4-digit number.
+    For every digit that the user guessed correctly in the correct place, they
+    have a “cow”. For every digit the user guessed correctly in the wrong place
+    is a “bull.” Every time the user makes a guess, tell them how many “cows”
+    and “bulls” they have. Once the user guesses the correct number, the game
+    is over. Keep track of the number of guesses the user makes throughout the
+    game and tell the user at the end.
+    '''
+
+    print("Welcome to the Cows and Bulls Game!")
+
+    num = []
+
+    #Generate random list of 4 elements
+    for x in range(0, 4):
+        num.append(random.randint(0, 9))
+
+    #Game loop
+    quit = 0
+    while quit != "q":
+        print("""
+        The rules are simple, guess a 4-digit number. For every digit that you
+        guess correctly in the correct place, get a “cow”. For every digit you
+        guess correctly in the wrong place you get a “bull.” After each round
+        you'll be told the number of cows and bulls you guessed. Once you guess
+        the correct number, you win!
+        """)
+
+        #Uncomment line below to see num
+        #print(num)
+
+        #Take user input
+        print("Please enter a four digit number:")
+        guess = input()
+
+        #Check user input is exactly 4 digits
+        while len(guess) > 4 or len(guess) < 4:
+            print("Please enter a four digit number only!")
+            guess = input()
+
+        guess_list = []
+
+        #Convert user input into list w/ 4 elements
+        for x in str(guess):
+            guess_list.append(int(x))
+        print(guess_list)
+
+        cows = 0
+        bulls = 0
+
+        #Check for cows and bulls
+        for x in range(0, 4):
+            if guess_list[x] == num[x]:
+                cows = cows + 1
+            elif guess_list[x] in num[:]:
+                bulls = bulls + 1
+
+        print("You got {:d} Cows and {:d} Bulls".format(cows, bulls))
+
+        if cows == 4:
+            print("Congratulations you guessed the number correctly!!!")
+            print("It only took you {:d} tries".format(counter))
+            break
+
+        print('Press "q" to quit, or "enter" to continue,')
+        quit = str(input())
+
     #Spacing for readability
     print()
 
@@ -354,7 +429,7 @@ while quit != "q":
         5) Word Order
         6) Password Generator
         7) Decode a Web Page
-        8)
+        8) Cows and Bulls
         9)
         ''')
     print("--------------------------------")
