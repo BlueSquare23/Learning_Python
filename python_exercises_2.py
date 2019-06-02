@@ -405,8 +405,33 @@ def Exercise8():
 
 
 def Exercise9():
-    print("")
+    print("Decode A Web Page Two")
     print("--------------------------------")
+
+    '''
+    Using the requests and BeautifulSoup Python libraries, print to the screen
+    the full text of the article on this website:
+    http://www.vanityfair.com/society/2014/06/monica-lewinsky-humiliation-culture.
+
+    The article is long, so it is split up between 4 pages. Your task is to
+    print out the text to the screen so that you can read the full article
+    without having to click any buttons.
+    '''
+
+    #Turns webpage into html string and saves that as r_html using requests
+    url = 'http://www.vanityfair.com/society/2014/06/monica-lewinsky-humiliation-culture'
+    r = requests.get(url)
+    r_html = r.text
+
+    #Soupifies that webpage
+    soup = BeautifulSoup(r_html, 'html.parser')
+
+    #Finds all the <p> tags and prints out the text of those html subtitles
+    for article in soup.find_all('p'):
+        print()#For spacing
+        print(article.text)
+
+
     #Spacing for readability
     print()
 
@@ -430,7 +455,7 @@ while quit != "q":
         6) Password Generator
         7) Decode a Web Page
         8) Cows and Bulls
-        9)
+        9) Decode A Web Page Two
         ''')
     print("--------------------------------")
     selected = input()
