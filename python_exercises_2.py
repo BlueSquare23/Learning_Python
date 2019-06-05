@@ -360,7 +360,7 @@ def Exercise8():
         """)
 
         #Uncomment line below to see num
-        #print(num)
+        print(num)
 
         #Take user input
         print("Please enter a four digit number:")
