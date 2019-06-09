@@ -334,23 +334,134 @@ def Exercise4():
     print("--------------------------------")
 
 def Exercise5():
-    print("Tic Tac Toe Draw Game Board")
+    print("Tic Tac Toe")
     print("--------------------------------")
 
     '''
-    The classic game of Tic Tac Toe
+    Its the classic game of Tic Tac Toe!
     '''
-    def print_horiz_line():
-        print(" --- " * 3)
+    print("Welcome to the classic game of Tic Tac Toe!")
 
-    def print_vert_line():
-        print("|    " * 4)
+    #The win checking
+    game = [
+    [0,0,0],
+    [0,0,0],
+    [0,0,0]
+    ]
 
-    for index in range(3):
-        print_horiz_line()
-        print_vert_line()
 
-    print_horiz_line()
+    def win_checker(player):
+        #Column check
+        if game[0][0] == player and game[1][0] == player and game[2][0] == player:
+            print("Left column = player{:d}".format(player))
+        elif game[0][1] == player and game[1][1] == player and game[2][1] == player:
+            print("Middle column = player{:d}".format(player))
+        elif game[0][2] == player and game[1][2] == player and game[2][2] == player:
+            print("right column = player{:d}".format(player))
+        #Row check
+        elif game[0][0] == player and game[0][1] == player and game[0][2] == player:
+            print("Top row = player{:d}".format(player))
+        elif game[1][0] == player and game[1][1] == player and game[1][2] == player:
+            print("Middle row = player{:d}".format(player))
+        elif game[2][0] == player and game[2][1] == player and game[2][2] == player:
+            print("Bottom row = player{:d}".format(player))
+        #Diagonal check
+        elif game[0][0] == player and game[1][1] == player and game[2][2] == player:
+            print("Diagonal win player{:d}".format(player))
+        elif game[0][2] == player and game[1][1] == player and game[2][0] == player:
+            print("Diagonal win player{:d}".format(player))
+        else:
+            print("null")
+
+    #Game Rules
+    print("""
+    Rules:
+
+    Select the cordinates on the game board where you'd like to place your mark.
+    Player1 is an 'X' and Player2 is an 'O'
+    The first person to get three in a row wins!
+
+    The game board looks like this,
+
+    ___|___|_X_
+    ___|___|___
+       |   |
+
+    The 'X' is at the cordinates (1, 3). Where One is the row and Three is the
+    column.
+    """)
+
+    #User input
+    def player_move(player):
+        print("Player{:d} choose your move,".format(player))
+        player_col = int(input("Choose your column, ")) - 1
+        player_row = int(input("Choose your row, ")) - 1
+        #player_mov = [player_row, player_col]
+        #return player_mov
+        game[player_col][player_row] = player
+        return game
+
+        '''
+    #Print board
+    def top_row(player1, player2):
+
+        #Player1's row
+        if game[0][0] == 0 and game[1][0] == 0 and game[2][0] == 0:
+            print('_{:s}_|_{:s}_|_{:s}_'.format('_', '_', '_'))
+        elif game[0][0] == 1 and game[1][0] == 0 and game[2][0] == 0:
+            print('_{:s}_|_{:s}_|_{:s}_'.format(player1, '_', '_'))
+        elif game[0][0] == 1 and game[1][0] == 1 and game[2][0] == 0:
+            print('_{:s}_|_{:s}_|_{:s}_'.format(player1, player1, '_'))
+        elif game[0][0] == 1 and game[1][0] == 1 and game[2][0] == 1:
+            print('_{:s}_|_{:s}_|_{:s}_'.format(player1, player1, player1))
+        #Player2's row
+        elif game[0][0] == 2 and game[1][0] == 0 and game[2][0] == 0:
+            print('_{:s}_|_{:s}_|_{:s}_'.format(player2, '_', '_'))
+        elif game[0][0] == 2 and game[1][0] == 2 and game[2][0] == 0:
+            print('_{:s}_|_{:s}_|_{:s}_'.format(player2, player2, '_'))
+        elif game[0][0] == 2 and game[1][0] == 2 and game[2][0] == 2:
+            print('_{:s}_|_{:s}_|_{:s}_'.format(player2, player2, player2))
+        #Mixed row
+        elif game[0][0] == 1 and game[1][0] == 2 and game[2][0] == 2:
+            print('_{:s}_|_{:s}_|_{:s}_'.format(player1, player2, player2))
+        elif game[0][0] == 1 and game[1][0] == 1 and game[2][0] == 2:
+            print('_{:s}_|_{:s}_|_{:s}_'.format(player1, player1, player2))
+        elif game[0][0] == 2 and game[1][0] == 1 and game[2][0] == 1:
+            print('_{:s}_|_{:s}_|_{:s}_'.format(player2, player1, player1))
+        elif game[0][0] == 2 and game[1][0] == 2 and game[2][0] == 1:
+            print('_{:s}_|_{:s}_|_{:s}_'.format(player2, player2, player1))
+
+
+        print(game)
+
+        print('_{:s}_|_{:s}_|_{:s}_'.format('_', '_', '_'))
+        print('_{:s}_|_{:s}_|_{:s}_'.format('_', '_', '_'))
+        print(' {:s} | {:s} | {:s} '.format(' ', ' ', ' '))
+
+        '''
+    
+    player_move(1)
+    #top_row('X', 'O')
+    for x in game:
+        print(x)
+
+    player_move(2)
+    for x in game:
+        print(x)
+    #top_row('X', 'O')
+
+    player_move(1)
+    for x in game:
+        print(x)
+    #top_row('X', 'O')
+
+    #Scoring
+
+    #print(var)
+    #print(var[0])
+    #print(var[1]
+    #game[var[1]][var[0]] = 1
+
 
     #Spacing for readability
     print()
@@ -491,11 +602,45 @@ def Exercise6():
     print("--------------------------------")
 
 def Exercise7():
-    print("")
+    print("Check Tic Tac Toe")
     print("--------------------------------")
 
     '''
+    As you may have guessed, we are trying to build up to a full tic-tac-toe
+    board. However, this is significantly more than half an hour of coding,
+    so we’re doing it in pieces.
+
+    Today, we will simply focus on checking whether someone has WON a game of
+    Tic Tac Toe, not worrying about how the moves were made.
     '''
+
+    #Populate the game board with whatever test values you'd like
+    game = [
+    [1,1,0],
+    [0,0,1],
+    [1,1,1]
+    ]
+    print(game[1][1])
+
+    def win_checker(player):
+        #Column check
+        if game[0][0] == player and game[1][0] == player and game[2][0] == player:
+            print("Left column = player{:d}".format(player))
+        elif game[0][1] == player and game[1][1] == player and game[2][1] == player:
+            print("Middle column = player{:d}".format(player))
+        elif game[0][2] == player and game[1][2] == player and game[2][2] == player:
+            print("right column = player{:d}".format(player))
+        #Row check
+        elif game[0][0] == player and game[0][1] == player and game[0][2] == player:
+            print("Top row = player{:d}".format(player))
+        elif game[1][0] == player and game[1][1] == player and game[1][2] == player:
+            print("Middle row = player{:d}".format(player))
+        elif game[2][0] == player and game[2][1] == player and game[2][2] == player:
+            print("Bottom row = player{:d}".format(player))
+        else:
+            print("Nobody's won yet!")
+
+    win_checker(1)
 
     #Spacing for readability
     print()
@@ -503,11 +648,26 @@ def Exercise7():
     print("--------------------------------")
 
 def Exercise8():
-    print("")
+    print("Max Of Three")
     print("--------------------------------")
 
     '''
+    Implement a function that takes as input three variables, and returns the
+    largest of the three. Do this without using the Python max() function!
+
+    The goal of this exercise is to think about some internals that
+    Python normally takes care of for us. All you need is some variables and
+    if statements!
     '''
+
+    def max_of_three(a, b, c):
+        if (a > b) and (a > c):
+            return a
+        elif (b > a) and (b > c):
+            return b
+        elif (c > b) and (c > a):
+            return c
+    print(max_of_three(1,28,16))
 
     #Spacing for readability
     print()
@@ -542,8 +702,8 @@ while quit != "q":
         4) File Overlap
         5) Tic Tac Toe
         6) Guessing Game Two
-        7)
-        8)
+        7) Check Tic Tac Toe
+        8) Max Of Three
         9)
         ''')
     print("--------------------------------")
