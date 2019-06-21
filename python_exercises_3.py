@@ -261,7 +261,7 @@ def Exercise3():
     #Use with to open the namelist file as a variable named open_file
     with open('namelist.txt', 'r') as open_file:
         #all_text = open_file.read()
-        #Use readline() to read the file line by line
+        #Use readline() to read the file line by line into a list called line
         line = open_file.readline()
         #Use a while loop to iterate through all of the lines and strip them of
         #surrounding characters till it reaches the end of the file
@@ -764,11 +764,34 @@ def Exercise8():
     print("--------------------------------")
 
 def Exercise9():
-    print("")
+    print("Pick Word")
     print("--------------------------------")
 
     '''
+    This exercise is Part 1 of 3 of the Hangman exercise series. The other
+    exercises are: Part 2 and Part 3.
+
+    In this exercise, the task is to write a function that picks a random word
+    from a list of words from the SOWPODS dictionary. Download this file and
+    save it in the same directory as your Python code. This file is Peter
+    Norvig’s compilation of the dictionary of words used in professional
+    Scrabble tournaments. Each line in the file contains a single word.
+
+    Hint: use the Python random library for picking a random word.
     '''
+
+    with open('sowpods.txt', 'r') as open_file:
+        line = open_file.readline().strip()
+        #267750 is number of lines (from wc -l)
+        int = random.randint(0,267750)
+        print(int)
+        line_list = []
+        while line:
+            line_list.append(line)
+            line = open_file.readline().strip()
+
+    print(line_list[int])
+    line_list = []
 
     #Spacing for readability
     print()
@@ -793,7 +816,7 @@ while quit != "q":
         6) Guessing Game Two
         7) Check Tic Tac Toe
         8) Max Of Three
-        9)
+        9) Pick Word
         ''')
     print("--------------------------------")
     selected = input()
