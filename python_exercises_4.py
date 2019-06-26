@@ -106,32 +106,43 @@ def Exercise2():
     Keep track of the letters the user guessed. If the user guesses a letter
     they already guessed, don’t penalize them - let them guess again.
     '''
-    '''
-    with open('sowpods.txt', 'r') as open_file:
+
+    print("""
+    Welcome to the classic game of Hangman!
+
+        The rules are simple. Guess the mystery word, letter by letter.
+        If you get the letter right the word so far is reviled to you. But,
+        if you guess the letter wrong you're one step closer to a short
+        drop and a sudden stop.
+    """)
+
+    #Pulls word from file sowpods.txt
+    with open('hangman_words.txt', 'r') as open_file:
         line = open_file.readline().strip()
         #267750 is number of lines (from wc -l)
-        int = random.randint(0,267750)
+        int = random.randint(0,999)
         #print(int)
         line_list = []
         while line:
             line_list.append(line)
             line = open_file.readline().strip()
     word = line_list[int].lower()
-    '''
+
     #Test word
-    word = "aardvark"
-    print(word)
+    #word = "aardvark"
+    #print(word)
     #List of used letters (appended to after getting input from user)
     guessed_letters = []
     #Number of guesses so far
     number_of_guesses = 0
     #Number of guesses used
     false_guesses_left = 6
-
+    #A listified version of the word
     list_word = []
 
     #Takes user input and sanatizes it
     def user_input():
+        print("")#For output clarity
         print("Guess a letter: ")
         guess = str(input().lower())
         #Makes sure input is only one letter
@@ -140,34 +151,14 @@ def Exercise2():
             return(user_input())
         #Makes sure input has not already been guessed
         elif guess in guessed_letters:
+            print("")#For output clarity
             print("You've already guesses that letter.")
             return(user_input())
         #Ships it off if its all clear
         else:
             return(guess)
 
-    #Whole function (heart of the program) needs reworked
-    def word_print(letter):
-        return(word)
 
-        '''
-    def word_print(letter):
-        if number_of_guesses == 0:
-            #Turn word into list of letters in word
-            l_word = []
-            for x in word:
-                if letter == x:
-                    l_word.append("{:s} ".format(x))
-                elif letter != x:
-                    l_word.append("_ ")
-            l_word = "".join(l_word)
-            return(l_word)
-        elif number_of_guesses > 0:
-            for x in new_word:
-                if letter in guessed_letters:
-                    print("test")
-            return(l_word)
-        '''
     #Draws the appropriate game board for the number of guesses left
     def game_board(false_guesses_left):
         if false_guesses_left == 0:
@@ -177,6 +168,10 @@ def Exercise2():
             d = "\\"
             e = "/"
             f = "\\"
+            print("")
+            print("You Lose!")
+            print("")
+            print("The word was, {:s}".format(word))
         elif false_guesses_left == 1:
             a = "O"
             b = "/"
@@ -232,21 +227,57 @@ def Exercise2():
     #Draws the blank game_board for starters
     game_board(false_guesses_left)
 
+    #Creating the guessed string
+    guessed = "_" * len(word)
+    #Listifying the guessed string
+    guessed = list(guessed)
+
+    print("Word spaces: ")
+    print(" ".join(guessed))
+
     #Main game loop (ends when no false guesses remain)
     while false_guesses_left > 0:
         #Calls user_input and defines it as varriable letters
         letter = user_input()
         #Appends letter (users guess) to the end of the guessed_letters list
         guessed_letters.append(letter)
+        print("")#For output clarity
+        print("Guessed Letters: ")
         print(guessed_letters)
         #If the letter is in the word alert that its there and call word_print
         if letter in word:
+            print("")#For output clarity
             print("The letter '{:s}' is in the word!".format(letter))
-            #Needs reworked
-            word_print(letter)
 
+            #Initializing itratative position at 0
+            pos = 0
+            #For loop goes through letter by letter in guesses and if that letter is in that position in word
+            #it adds it to the list guessed
+            for i in guessed:
+                if word[pos:pos+1] == letter:
+                    guessed[pos:pos+1] = letter
+                    #print(guessed)
+                    #Then guessed is turned into the string word_so_far for printing
+                    word_so_far = " ".join(guessed)
+                #Position is itterated
+                pos += 1
+
+            print("")#For output clarity
+            print("The word so far is: ")
+            print(word_so_far)
+
+            #Win checker
+            check = 0
+            for x in word:
+                if x not in word_so_far:
+                    check += 1
+            if check == 0:
+                print("")#For output clarity
+                print("You Win!")
+                exit()
             #Increments the number of guesses at the end
             number_of_guesses += 1
+
         #If the guess is false (i.e. not in the word) prints the appropriate game_board
         elif letter not in word:
             game_board(false_guesses_left - 1)
@@ -254,6 +285,7 @@ def Exercise2():
             false_guesses_left = (false_guesses_left -1)
             #Increments guess counter
             number_of_guesses +=1
+
     #Spacing for readability
     print()
 
